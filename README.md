@@ -1,30 +1,59 @@
-docker-miniproxy
-==============
+# What is Docker-MiniProxy
+Docker-MiniProxy is a container for socks5 proxy server [3proxy](http://www.3proxy.ru/).
 
-A docker.io container for 3proxy
+# How to use
 
+## Basic usage
 
-Building and running the container image
-----------------------------------------
+```
+docker run --rm --name miniproxy -ti -p 3128:3128 -p 31331:31331 riftbit/docker-miniproxy
+```
 
-Clone this repo and cd into the cloned directory
+After container starts you will see params for connection setup:
 
-Run the following docker command to build the image:
+```
 
-    docker build -t riftbit/miniproxy .
+```
 
-When the image is built start up the image with the following command replacing **'/home/user/mediaFiles'** with the path where your media files reside:
+## Daemon usage
 
-    docker run -d --net=host -p 5129:5129 riftbit/miniproxy
+### First run
 
+```
+docker run --name miniproxy -di -p 3128:3128 -p 31331:31331 riftbit/docker-miniproxy
+```
 
-Notes
---------------------
+### Second and other run
 
-In the meantime, you can run the container with --net=host (requires docker version 0.11.0) but read the next excerpt from the docker commandline help 
+```
+docker start miniproxy
+```
 
------------------------------------------
->	--net=host  : Use the host network stack inside the container.  
->	Note: the host mode gives the container full access to local system services such as D-bus and is therefore considered insecure.
+### After container started get connection params
 
------------------------------------------
+```
+docker logs miniproxy
+```
+
+### Remove container if you not needs in it
+
+```
+docker rm miniproxy
+```
+
+### Manual set password for proxy user and admin user
+When you starts container you can use manual password set. 
+First param is for proxy user.
+Second param is for admin user.
+You can set only proxy user password, or both (user and admin) password.
+
+Only user password:
+```
+docker run --name miniproxy -di -p 3128:3128 -p 31331:31331 riftbit/docker-miniproxy proxy_user_password
+```
+
+User password and Admin password:
+
+```
+docker run --name miniproxy -di -p 3128:3128 -p 31331:31331 riftbit/docker-miniproxy proxy_user_password proxy_admin_password
+```
