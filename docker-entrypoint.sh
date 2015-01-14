@@ -16,7 +16,7 @@ fi
 sed -e "s/proxy:CL:.*/proxy:CL:$PROXY_USR_PWD/" /etc/3proxy/3proxy.cfg > /etc/3proxy/3proxy.cfg
 sed -e "s/admin:CL:.*/proxy:CL:$PROXY_ADM_PWD/" /etc/3proxy/3proxy.cfg > /etc/3proxy/3proxy.cfg
 
-exec gosu /etc/3proxy/3proxy /etc/3proxy/3proxy.cfg
+exec /etc/3proxy/3proxy /etc/3proxy/3proxy.cfg
 PROXY_PID=$(cat /var/run/3proxy.pid)
 
 echo "IP address:               $(hostname -I)"
