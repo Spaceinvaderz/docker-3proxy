@@ -23,9 +23,6 @@ RUN echo "Getting 3proxy sources..." && \
     cd src && \
     mv 3proxy /etc/3proxy/
 
-COPY 3proxy.cfg /etc/3proxy/3proxy.cfg
-RUN chmod 600 /etc/3proxy/3proxy.cfg
-
 COPY docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 3128:3128/tcp 31331:31331/tcp
