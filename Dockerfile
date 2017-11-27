@@ -24,8 +24,7 @@ RUN apk add --update alpine-sdk wget bash && \
 	chmod -R 777 /etc/3proxy
 
 COPY docker-entrypoint.sh /
-
-EXPOSE 3128/tcp
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 3128
 CMD ["start_proxy"]
