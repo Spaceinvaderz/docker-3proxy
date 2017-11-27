@@ -7,8 +7,8 @@
 FROM alpine:latest
 MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
 
-RUN apk add --update alpine-sdk && \
-    apk add --update wget && \
+
+RUN apk add --update alpine-sdk wget bash && \
     echo "Getting 3proxy sources..." && \
     wget -q http://3proxy.ru/0.8.11/3proxy-0.8.11.tgz && \
     echo "Unpacking 3proxy sources..." && \
@@ -20,11 +20,12 @@ RUN apk add --update alpine-sdk && \
     mkdir /etc/3proxy && \
     echo "Move binaries..." && \
     cd src && \
-    mv 3proxy /etc/3proxy/
+    mv 3proxy /etc/3proxy/ && \
+	chmod -R 777 /etc/3proxy
 
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY docker-entrypoint.sh /
 
-EXPOSE 3128/tcp 31331/tcp
+EXPOSE 3128/tcp
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["start_proxy"]
