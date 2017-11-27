@@ -10,7 +10,7 @@ before_script:
 script:
   - cd ~/docker-miniproxy
   - travis_retry docker build -t "$image" .
-  - ~/docker-miniproxy/run.sh
+  - travis_retry docker run --name dproxy --net host --detach --env PROXY_LOGIN=LOGIN --env PROXY_PASSWORD=PASSWORD "$image"
 
 after_script:
   - docker images
