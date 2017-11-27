@@ -4,17 +4,16 @@
 # Run with: docker run --rm --name miniproxy -d -p 3128:3128 -p 31331:31331 riftbit/miniproxy
 # or docker run --rm --name miniproxy -t -i -p 3128:3128 -p 31331:31331 riftbit/miniproxy
 
-FROM debian:jessie
-MAINTAINER ErgoZ <ergozru@gmail.com>
+FROM alpine:latest
+MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
 
-# required packages
-RUN apt-get -y update && apt-get -y install build-essential pwgen wget
-
-RUN echo "Getting 3proxy sources..." && \
-    wget -q http://3proxy.ru/0.7.1.1/3proxy-0.7.1.1.tgz && \
+RUN apk add --update alpine-sdk && \
+    apk add --update wget && \
+    echo "Getting 3proxy sources..." && \
+    wget -q http://3proxy.ru/0.8.11/3proxy-0.8.11.tgz && \
     echo "Unpacking 3proxy sources..." && \
-    tar -xf 3proxy-0.7.1.1.tgz && \
-    rm 3proxy-0.7.1.1.tgz && \
+    tar -xf 3proxy-0.8.11.tgz && \
+    rm 3proxy-0.8.11.tgz && \
     cd 3proxy && \
     echo "Compiling 3proxy from sources..." && \
     make -f Makefile.Linux && \
@@ -25,6 +24,6 @@ RUN echo "Getting 3proxy sources..." && \
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-EXPOSE 3128:3128/tcp 31331:31331/tcp
+EXPOSE 3128/tcp 31331/tcp
 
 ENTRYPOINT ["/entrypoint.sh"]
