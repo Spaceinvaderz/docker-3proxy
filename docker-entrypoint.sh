@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -z "$PROXY_LOGIN" && -z "$PROXY_PASSWORD" ]]; then
+if [ -z "$PROXY_LOGIN" ] || [ -z "$PROXY_PASSWORD" ]; then
 			echo >&2 'error: proxy is uninitialized, variables is not specified '
 			echo >&2 '  You need to specify PROXY_LOGIN and PROXY_PASSWORD'
 			exit 1
