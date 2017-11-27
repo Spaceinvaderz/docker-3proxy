@@ -10,7 +10,6 @@ install:
 
 before_script:
   - env | sort
-  - cd "$VERSION"
   - image="docker-proxy:$VERSION"
 
 script:
