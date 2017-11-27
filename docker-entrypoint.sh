@@ -30,7 +30,6 @@ flush
 	echo "Proxy process pid:        $PROXY_PID"
 	echo
 	echo "Proxy process started!"
-	exit 0
 fi
 
 exec "$@"	
