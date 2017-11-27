@@ -1,15 +1,10 @@
 language: bash
 services: docker
 
-env:
-  - VERSION=stable
-  - VERSION=latest
-
 install:
   - git clone https://github.com/RiftBit/docker-miniproxy.git ~/container
 
 before_script:
-  - env | sort
   - image="docker-proxy:$VERSION"
 
 script:
