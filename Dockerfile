@@ -17,7 +17,7 @@ RUN apk add --update alpine-sdk wget bash && \
     cd 3proxy && \
     echo "Compiling 3proxy from sources..." && \
     make -f Makefile.Linux && \
-    mkdir /etc/3proxy && \
+    mkdir -p /etc/3proxy/log && \
     echo "Move binaries..." && \
     cd src && \
     mv 3proxy /etc/3proxy/ && \

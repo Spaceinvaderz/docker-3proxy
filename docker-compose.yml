@@ -1,0 +1,10 @@
+Proxy:
+  restart: always
+  image: riftbit/docker-miniproxy:latest
+  ports:
+    - "3128:3128"
+  environment:
+    - PROXY_LOGIN=
+    - PROXY_PASSWORD=
+  volumes:
+    - /srv/docker/miniproxy:/etc/3proxy/log/
