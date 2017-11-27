@@ -27,3 +27,4 @@ COPY docker-entrypoint.sh /entrypoint.sh
 EXPOSE 3128/tcp 31331/tcp
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["start_proxy"]
