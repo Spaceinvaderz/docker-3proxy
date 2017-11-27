@@ -1,4 +1,4 @@
-Proxy:
+MiniProxy:
   restart: always
   image: riftbit/docker-miniproxy:latest
   ports:
