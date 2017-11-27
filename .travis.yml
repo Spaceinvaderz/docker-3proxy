@@ -2,14 +2,15 @@ language: bash
 services: docker
 
 install:
-  - git clone https://github.com/RiftBit/docker-miniproxy.git ~/container
+  - git clone https://github.com/RiftBit/docker-miniproxy.git ~/docker-miniproxy
 
 before_script:
   - image="riftbit/docker-proxy:latest"
 
 script:
+  - cd ~/docker-miniproxy
   - travis_retry docker build -t "$image" .
-  - ~/container/run.sh "$image"
+  - ~/docker-miniproxy/run.sh
 
 after_script:
   - docker images
