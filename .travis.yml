@@ -5,11 +5,11 @@ install:
   - git clone https://github.com/RiftBit/docker-miniproxy.git ~/container
 
 before_script:
-  - image="docker-proxy:latest"
+  - image="riftbit/docker-proxy:latest"
 
 script:
   - travis_retry docker build -t "$image" .
-  - ~/container/test/run.sh "$image"
+  - ~/container/run.sh "$image"
 
 after_script:
   - docker images
