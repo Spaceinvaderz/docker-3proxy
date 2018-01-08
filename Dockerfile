@@ -1,19 +1,20 @@
 # 3proxy docker
 #
-# VERSION               0.1
-# Run with: docker run --rm --name miniproxy -d -p 3128:3128 -p 31331:31331 riftbit/miniproxy
-# or docker run --rm --name miniproxy -t -i -p 3128:3128 -p 31331:31331 riftbit/miniproxy
+# VERSION               0.3
+# Run with: docker run --rm --name 3proxy -d -p 3128:3128 riftbit/3proxy
+# or docker run --rm --name 3proxy -t -i -p 3128:3128 riftbit/3proxy
 
 FROM alpine:latest
 MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
 
+ARG PROXY_VERSION=0.8.11
 
 RUN apk add --update alpine-sdk wget bash && \
     echo "Getting 3proxy sources..." && \
-    wget -q http://3proxy.ru/0.8.11/3proxy-0.8.11.tgz && \
+    wget -q http://3proxy.ru/${PROXY_VERSION}/3proxy-${PROXY_VERSION}.tgz && \
     echo "Unpacking 3proxy sources..." && \
-    tar -xf 3proxy-0.8.11.tgz && \
-    rm 3proxy-0.8.11.tgz && \
+    tar -xf 3proxy-${PROXY_VERSION}.tgz && \
+    rm 3proxy-${PROXY_VERSION}.tgz && \
     cd 3proxy && \
     echo "Compiling 3proxy from sources..." && \
     make -f Makefile.Linux && \
