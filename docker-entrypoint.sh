@@ -14,7 +14,7 @@ nscache 65536
 nsrecord www.porno.com 127.0.0.1
 daemon
 pidfile /etc/3proxy/3proxy.pid
-log /etc/3proxy/3proxy.log D
+log /etc/3proxy/log/3proxy.log D
 rotate 7
 users $PROXY_LOGIN:CL:$PROXY_PASSWORD
 auth strong
@@ -30,7 +30,6 @@ flush
 	echo "Proxy process pid:        $PROXY_PID"
 	echo
 	echo "Proxy process started!"
-	exit 0
 fi
 
 exec "$@"	

@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  serviio:
+    restart: always
+    image: riftbit/3proxy:stable
+    ports:
+     - "3128:3128/tcp"
+    volumes:
+     - /srv/docker/3proxy:/etc/3proxy/
