@@ -30,6 +30,9 @@ flush
 	echo "Proxy process pid:        $PROXY_PID"
 	echo
 	echo "Proxy process started!"
+	
+	tail -f /etc/3proxy/log/3proxy.log
+	
 else
 	exec "$@"
 fi

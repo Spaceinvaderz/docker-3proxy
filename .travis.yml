@@ -2,13 +2,13 @@ language: bash
 services: docker
 
 install:
-  - git clone https://github.com/RiftBit/docker-miniproxy.git ~/docker-miniproxy
+  - git clone https://github.com/riftbit/docker-3proxy.git ~/docker-3proxy
 
 before_script:
-  - image="riftbit/docker-proxy:latest"
+  - image="riftbit/3proxy:latest"
 
 script:
-  - cd ~/docker-miniproxy
+  - cd ~/docker-3proxy
   - travis_retry docker build -t "$image" .
   - travis_retry docker run --name dproxy --net host --detach --env PROXY_LOGIN=LOGIN --env PROXY_PASSWORD=PASSWORD "$image"
 
