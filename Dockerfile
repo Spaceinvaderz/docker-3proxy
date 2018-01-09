@@ -9,7 +9,8 @@ MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
 
 ARG PROXY_VERSION=0.8.11
 
-RUN apk add --update alpine-sdk wget bash && \
+RUN DIR=$(mktemp -d) && cd ${DIR} && \
+    apk add --update alpine-sdk wget bash && \
     echo "Getting 3proxy sources..." && \
     wget -q http://3proxy.ru/${PROXY_VERSION}/3proxy-${PROXY_VERSION}.tgz && \
     echo "Unpacking 3proxy sources..." && \
@@ -22,7 +23,8 @@ RUN apk add --update alpine-sdk wget bash && \
     echo "Move binaries..." && \
     cd src && \
     mv 3proxy /etc/3proxy/ && \
-	chmod -R 777 /etc/3proxy
+    chmod -R 777 /etc/3proxy && \
+    rm -rf ${DIR}
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
