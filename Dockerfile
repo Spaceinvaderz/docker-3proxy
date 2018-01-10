@@ -1,8 +1,5 @@
 # 3proxy docker
-#
 # VERSION               0.3
-# Run with: docker run --rm --name 3proxy -d -p 3128:3128 riftbit/3proxy
-# or docker run --rm --name 3proxy -t -i -p 3128:3128 riftbit/3proxy
 
 FROM alpine:latest
 MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
@@ -25,5 +22,8 @@ RUN DIR=$(mktemp -d) && cd ${DIR} && \
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 3128
+VOLUME ["/etc/3proxy/log"]
+
+EXPOSE 3128:3128/tcp
+
 CMD ["start_proxy"]
