@@ -31,7 +31,7 @@ flush
 	echo
 	echo "Proxy process started!"
 	
-	tail -f /etc/3proxy/log/3proxy.log
+	tail -f /dev/null
 	
 else
 	exec "$@"
