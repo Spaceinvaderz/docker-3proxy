@@ -11,6 +11,11 @@ Exposed Ports
 Volumes:
 
  - /etc/3proxy/log
+ 
+ Environment variables:
+ 
+  - PROXY_LOGIN - login for proxy user (:exclamation:required!)
+  - PROXY_PASSWORD - password for proxy user (:exclamation:required!)
 
 ```
 docker run --name 3proxy -d -p 3128:3128 --env PROXY_LOGIN=pr0xyUser --env PROXY_PASSWORD=passw0rd riftbit/3proxy
