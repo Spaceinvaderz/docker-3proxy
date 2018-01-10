@@ -13,7 +13,7 @@ Volumes:
  - /etc/3proxy/log
 
 ```
-docker run --rm --name 3proxy -d -p 3128:3128 --env PROXY_LOGIN=pr0xyUser --env PROXY_PASSWORD=passw0rd riftbit/3proxy
+docker run --name 3proxy -d -p 3128:3128 --env PROXY_LOGIN=pr0xyUser --env PROXY_PASSWORD=passw0rd riftbit/3proxy
 ```
 
 After container starts you will see params for connection setup:
