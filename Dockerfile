@@ -7,7 +7,7 @@ MAINTAINER Riftbit ErgoZ <ergozru@riftbit.com>
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION
+ARG VERSION=0.8.11
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
 	org.label-schema.name="3proxy Socks5 Proxy Container" \
@@ -20,12 +20,10 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 	org.label-schema.schema-version="1.0" \
 	maintainer="Riftbit ErgoZ"
 
-ARG PROXY_VERSION=0.8.11
-
 RUN DIR=$(mktemp -d) && cd ${DIR} && \
     apk add --update alpine-sdk wget bash && \
-    wget -q http://3proxy.ru/${PROXY_VERSION}/3proxy-${PROXY_VERSION}.tgz && \
-    tar -xf 3proxy-${PROXY_VERSION}.tgz && \
+    wget -q http://3proxy.ru/${VERSION}/3proxy-${VERSION}.tgz && \
+    tar -xf 3proxy-${VERSION}.tgz && \
     cd 3proxy && \
     make -f Makefile.Linux && \
     mkdir -p /etc/3proxy/log && \
